@@ -3,7 +3,7 @@ package com.lizogub;
 public class Main {
 
     public static void main(String[] args) {
-	// write your code here
-        System.out.println("IT School it's cool)");
+        HomeWork2 hw2 = new HomeWork2();
+        hw2.run();
     }
 }

@@ -81,6 +81,6 @@ public class Class3Cycle {
 //        this.task2();
 //        this.task3();
 //        this.task4();
-//        this.task5();
+        this.task5();
     }
 }

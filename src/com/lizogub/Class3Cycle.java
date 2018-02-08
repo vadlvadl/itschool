@@ -77,10 +77,14 @@ public class Class3Cycle {
     }
 
     public void run(){
-        this.task1();
+//        this.task1();
 //        this.task2();
 //        this.task3();
 //        this.task4();
-        this.task5();
+//        this.task5();
+
+        int a = 2, b = 5;
+
+        int c = (a >= b) ? b : a; System.out.println(!(b==a));
     }
 }

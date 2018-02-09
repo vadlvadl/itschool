@@ -4,8 +4,8 @@ import java.util.Scanner;
 
 public class HomeWork4 {
     private int gameMode = 0; // Режим игры: 1 - с компьютером, 2 - с человеком
-    private int sizeX = 3, sizeY = 3, fieldSize = 3; //Размер игрового поля
-    private int[][] field = new int[sizeY][sizeX]; // Игровое поле
+    private int sizeField = 3; //Размер игрового поля
+    private int[][] field = new int[sizeField][sizeField]; // Игровое поле
     private boolean gameOver = false;
     private char symbolPlayer1 = 'X';
     private char symbolPlayer2 = '0';
@@ -30,9 +30,9 @@ public class HomeWork4 {
     public void printField(){
         int counter = 1;
 
-        for(int i = 0; i < this.sizeY; i++){
+        for(int i = 0; i < this.sizeField; i++){
             StringBuilder row = new StringBuilder("");
-            for(int j = 0; j < this.sizeX; j++){
+            for(int j = 0; j < this.sizeField; j++){
                 row.append(" ");
                 if(this.field[i][j] == 0) {
                     row.append(counter);
@@ -43,13 +43,13 @@ public class HomeWork4 {
                         row.append(this.symbolPlayer2);
                     }
                 }
-                if(j < (this.sizeX -1)){
+                if(j < (this.sizeField -1)){
                     row.append(" |");
                 }
                 counter++;
             }
             System.out.println(row);
-            if(i < (this.sizeY -1))System.out.println("-----------");
+            if(i < (this.sizeField -1))System.out.println("-----------");
         }
     }
 
@@ -63,8 +63,8 @@ public class HomeWork4 {
         } while(!this.isEmptyCell(id - 1));
 
         id--;
-        int y = id / this.sizeX;
-        int x = id % this.sizeX;
+        int y = id / this.sizeField;
+        int x = id % this.sizeField;
         this.field[y][x] = 1;
         this.printField();
     }
@@ -79,8 +79,8 @@ public class HomeWork4 {
         } while(!this.isEmptyCell(id - 1));
 
         id--;
-        int y = id / this.sizeX;
-        int x = id % this.sizeX;
+        int y = id / this.sizeField;
+        int x = id % this.sizeField;
         this.field[y][x] = 2;
 
         this.printField();
@@ -88,16 +88,46 @@ public class HomeWork4 {
 
     private void checkGameOver(){
         int val = 0;
-        for(int i=0; i < this.sizeY; i++){
-            for(int j=0; j < this.sizeX;j++){
+        for(int i=0; i < this.sizeField; i++){
+            // Проверяем одинаковые ли элементы построчно
+            Integer s = this.field[i][0];
+            boolean lineCompleted = false;
+            for(int j=1; j < this.sizeField;j++){
+                if(!s.equals(this.field[i][j])) {
+                    lineCompleted = false;
+                    break;
+                }
+                lineCompleted = true;
+            }
+            if(lineCompleted)  {
+                this.gameOver = true;
+                break;
+            }
 
+            // Проверяем одинаковые ли элементы по колонкам
+            Integer c = this.field[0][i];
+            boolean colCompleted = false;
+            for(int j=1; j < this.sizeField;j++){
+                if(!c.equals(this.field[i][j])) {
+                    colCompleted = false;
+                    break;
+                }
+                colCompleted = true;
+            }
+            if(colCompleted) {
+                this.gameOver = true;
+                break;
             }
         }
+
     }
 
     private boolean isEmptyCell(int cell){
-        int y = cell / this.sizeX;
-        int x = cell % this.sizeX;
+        int rangeStart = 0;
+        int rangeEnd = this.sizeField * this.sizeField - 1;
+        if((cell < rangeStart) || (cell > rangeEnd)) return false;
+        int y = cell / this.sizeField;
+        int x = cell % this.sizeField;
         return (this.field[y][x] == 0) ? true : false;
     }
 
@@ -108,7 +138,9 @@ public class HomeWork4 {
            this.printField();
 
            this.makeStepUser1();
+           checkGameOver();
            this.makeStepUser2();
+           checkGameOver();
        }
 
        System.out.println(this.gameMode);

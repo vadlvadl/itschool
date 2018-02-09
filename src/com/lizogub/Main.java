@@ -10,7 +10,9 @@ public class Main {
 //        cl3.run();
 //        HomeWork3 hw3 = new HomeWork3();
 //        hw3.run();
-        HomeWork4 hw4 = new HomeWork4();
-        hw4.start();
+//        HomeWork4 hw4 = new HomeWork4();
+//        hw4.start();
+        ClaasWork09022018 cl4 = new ClaasWork09022018();
+        cl4.main();
     }
 }

@@ -11,7 +11,7 @@ public class HomeWork4 {
     private char symbolPlayer2 = '0';
 
     public int counterWinUser1 = 0, counterWinUser2 = 0;
-    public boolean draw = false;
+    public boolean draw = false; // Флаг, указывающий что игра закончилась вничью
     public String winnerName = "", user1Name = "" , user2Name = "";
     
     private void init(){

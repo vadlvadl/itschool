@@ -3,7 +3,6 @@ package com.lizogub;
 import java.util.Scanner;
 
 public class HomeWork4 {
-    private int gameMode = 0; // Режим игры: 1 - с компьютером, 2 - с человеком
     private int boardSize = 3; //Размер игрового поля
     private int[][] boardValues = new int[boardSize][boardSize]; // Игровое поле
     private  int boardInitValue = 8; // Начальное значение каждой клетки поля, должно быть больше 1

@@ -107,22 +107,37 @@ public class MyCollection implements InterfaceMyCollection {
 
     @Override
     public int get(int index) {
-        return 0;
+        return collection[index];
     }
 
     @Override
     public int find(int number) {
+        for(int i = 0; i < size; i++){
+            if(collection[i] == number){
+                return i;
+            }
+        }
         return 0;
     }
 
     @Override
     public int findLast(int number) {
+        for(int i = size - 1; i >= 0; i--){
+            if(collection[i] == number){
+                return i;
+            }
+        }
         return 0;
     }
 
     @Override
     public boolean equals(MyCollection obj) {
-        return false;
+        if(size != obj.length()) return false;
+
+        for(int i = 0; i < size; i++){
+            if(collection[i] != obj.get(i)) return false;
+        }
+        return true;
     }
 
     @Override
@@ -138,10 +153,6 @@ public class MyCollection implements InterfaceMyCollection {
         result.append("}");
 
         return result.toString();
-    }
-
-    private boolean validateIndex(int index){
-        return ((index >= 0) && (index < collection.length)) ? true : false;
     }
 
     private void increaseCollection(){

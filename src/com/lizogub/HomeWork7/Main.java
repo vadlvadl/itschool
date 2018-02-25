@@ -22,8 +22,6 @@ public class Main {
     public static void task2(){
         // Как работать с динамическими массивами?
 
-        FractionNumber[][] numbers;
-        Matrix mx = new Matrix();
         Scanner scn  = new Scanner(System.in);
 
         System.out.println("Введите кол-во строк матрицы:");
@@ -32,14 +30,20 @@ public class Main {
         System.out.println("Введите кол-во столбцов матрицы:");
         int cols = scn.nextInt();
 
+        FractionNumber[][] numbers = new FractionNumber[rows][cols];
+
         int x = 0;
         for(int i = 0; i < rows; i++){
             for(int j = 0; j < cols; j++){
                 System.out.println("Введите элемент [" + i + "][" + j + "]");
                 x = scn.nextInt();
-                //numbers[i][j] = new FractionNumber(x);
+                numbers[i][j] = new FractionNumber(x);
             }
         }
+
+        Matrix mx = new Matrix(numbers);
+
+        System.out.println(mx.getString());
     }
 
     public static void task3(){
@@ -54,6 +58,9 @@ public class Main {
 
     public static void main(String[] args) {
         // write your code here
-        task3();
+//        task2();
+        boolean a = true;
+
+
     }
 }

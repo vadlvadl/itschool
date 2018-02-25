@@ -26,13 +26,14 @@ public class DBUsers implements InterfaceDBUsers{
     }
 
     @Override
-    public StringBuilder getInfo() {
+    public String getInfo() {
         StringBuilder info = new StringBuilder();
 
-        for(User u : users)
-            info.append(u.getName() + " (" + u.getUserID() + "):   " + u.getLogin() + " | " + u.getPassword());
-
-        return info;
+        for(User u : users) {
+            //info.append(u.getName() + " (" + u.getUserID() + "):   " + u.getLogin() + " | " + u.getPassword());
+            info.append("123 ");
+        }
+        return info.toString();
     }
 
     @Override
@@ -43,7 +44,11 @@ public class DBUsers implements InterfaceDBUsers{
 
     }
 
-    private User[] extendDB(){
-        users = new User[size + increment];
+    private void extendDB(){
+        User[] newDB = new User[size + increment];
+        for (int i = 0; i < size; i++){
+            newDB[i] = users[i];
+        }
+        users = newDB;
     }
 }

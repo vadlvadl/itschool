@@ -2,8 +2,7 @@ package com.lizogub.OOPLesson4;
 
 public class Main {
 
-
-    public static void main(String args[]){
+    public static void task1(){
         MyCollection c1 = new MyCollection();
 
         System.out.println(c1.toString());
@@ -42,7 +41,24 @@ public class Main {
         System.out.println("Index of last number 14 -> " + c1.findLast(14));
         c1.clear();
         System.out.println(c1.toString());
+    }
 
+    public static void task2(){
+        User u1 = new User("Ivan","ivan1","psw1",12);
+        User u2 = new User("Igor","igor.kiev","psw1",13);
+        User u3 = new User("Sasha","alex","psw1",15);
+        User u4 = new User("Oleg","oleg.odessa","psw1",4);
 
+        DBUsers db = new DBUsers();
+        db.addUser(u1);
+        db.addUser(u2);
+        db.addUser(u3);
+        db.addUser(u4);
+
+        System.out.println(db.getInfo());
+    }
+
+    public static void main(String args[]){
+       task2();
     }
 }

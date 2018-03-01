@@ -29,9 +29,8 @@ public class DBUsers implements InterfaceDBUsers{
     public String getInfo() {
         StringBuilder info = new StringBuilder();
 
-        for(User u : users) {
-            //info.append(u.getName() + " (" + u.getUserID() + "):   " + u.getLogin() + " | " + u.getPassword());
-            info.append("123 ");
+        for(int i = 0; i < size; i++){
+            info.append(users[i].getName() + " (" + users[i].getUserID() + "):\t" + users[i].getLogin() + "\t|\t" + users[i].getPassword() + "\n");
         }
         return info.toString();
     }

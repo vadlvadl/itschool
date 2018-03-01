@@ -1,13 +1,16 @@
 package com.lizogub.OOPLesson4;
 
 public class MyCollection implements InterfaceMyCollection {
-    private Integer[] collection = new Integer[1];
+    private static final int INIT_SIZE = 1;
+    private static final int INIT_INCREMENT = 5;
+    
+    private Integer[] collection = new Integer[INIT_SIZE];
     private int size = 0;
 
     @Override
     public boolean add(int number) {
         if(size > collection.length - 1){
-            increaseCollection();
+            increaseCollection(INIT_INCREMENT);
         }
         collection[size] = number;
         size++;
@@ -19,7 +22,7 @@ public class MyCollection implements InterfaceMyCollection {
         if ((index < 0) || (index > collection.length)) return false;
 
         if((size > collection.length - 1)){
-            increaseCollection();
+            increaseCollection(INIT_INCREMENT);
         }
 
         if(index == size){
@@ -107,29 +110,43 @@ public class MyCollection implements InterfaceMyCollection {
 
     @Override
     public int get(int index) {
-        return 0;
+        return collection[index];
     }
 
     @Override
     public int find(int number) {
+        for(int i = 0; i < size; i++){
+            if(collection[i] == number){
+                return i;
+            }
+        }
         return 0;
     }
 
     @Override
     public int findLast(int number) {
+        for(int i = size - 1; i >= 0; i--){
+            if(collection[i] == number){
+                return i;
+            }
+        }
         return 0;
     }
 
     @Override
     public boolean equals(MyCollection obj) {
-        return false;
+        if(size != obj.length()) return false;
+
+        for(int i = 0; i < size; i++){
+            if(collection[i] != obj.get(i)) return false;
+        }
+        return true;
     }
 
     @Override
     public String toString() {
         StringBuilder result = new StringBuilder();
 
-        result.append("\nLength: " + length() + "\nSize: " + lengthMemory() + "\n");
         result.append("{");
         for(int i = 0; i < length(); i++){
             if(i > 0) result.append(",");
@@ -138,18 +155,6 @@ public class MyCollection implements InterfaceMyCollection {
         result.append("}");
 
         return result.toString();
-    }
-
-    private boolean validateIndex(int index){
-        return ((index >= 0) && (index < collection.length)) ? true : false;
-    }
-
-    private void increaseCollection(){
-        Integer[] a = new Integer[collection.length + 5];
-        for (int i = 0; i < length(); i++){
-            a[i] = collection[i];
-        }
-        collection = a;
     }
 
     private void increaseCollection(int count){

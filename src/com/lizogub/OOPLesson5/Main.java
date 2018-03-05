@@ -4,7 +4,7 @@ public class Main {
 
     public static void main(String[] args){
 
-        MyCollectionGeneric<String> obj = new MyCollectionGeneric<String>(new String[1]);
+        MyCollectionGeneric<String> obj = new MyCollectionGeneric<String>();
 
         obj.add("My list");
 //        obj.add("List 1");

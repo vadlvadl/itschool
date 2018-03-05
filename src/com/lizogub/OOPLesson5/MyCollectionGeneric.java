@@ -1,39 +1,37 @@
 package com.lizogub.OOPLesson5;
 
+
+//System.arraycopy
+
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-//public class MyCollectionGeneric<T> implements MyCollectionGenInterface{
-public class MyCollectionGeneric<T>{
+public class MyCollectionGeneric<T> implements MyCollectionGenInterface {
     private final static int CAPACITY_INCREMENT = 5;
-    private T[] collection;
+    private final static int INIT_SIZE = 3;
+//    private T[] collection;
+    private Object collection[] = new Object[INIT_SIZE];
     private int size = 0;
 
-    public MyCollectionGeneric(T[] collection){
-        this.collection = collection;
-        size = length();
-    }
+//    public MyCollectionGeneric(T[] collection){
+//        this.collection = collection;
+//        size = length();
+//    }
 
 
-    public void add(T obj) {
+    public void add(Object obj) {
         checkCapacity();
         collection[size++] = obj;
     }
 
 //    @Override
-    public void addByIndex(T o, int index) {
+    public void addByIndex(Object obj, int index) throws IndexOutOfBoundsException{
         checkCapacity();
-
-        if(index < 0){
-            throw new IndexOutOfBoundsException(index);
-        } else if(index > size){
-            throw new IndexOutOfBoundsException(index);
-        }
 
         for(int i = 0; i < size; i++){
             if(i == index){
-                collection[i] = o;
+                collection[i] = obj;
             } else if(i > index){
                 collection[i+1] = collection[i];
             }
@@ -63,7 +61,7 @@ public class MyCollectionGeneric<T>{
 //    @Override
     public int length() {
         int l = 0;
-        for(T x : collection){
+        for(Object x : collection){
             if (x == null){
                 return l;
             }
@@ -73,8 +71,8 @@ public class MyCollectionGeneric<T>{
     }
 
 //    @Override
-    public boolean ifContains(T obj) {
-        for(T x : collection){
+    public boolean ifContains(Object obj) {
+        for(Object x : collection){
             if(x.equals(obj)){
                 return true;
             }
@@ -83,17 +81,17 @@ public class MyCollectionGeneric<T>{
     }
 
 //    @Override
-    public T[] getCollection() {
-        return Arrays.copyOf(collection,size);
-    }
+//    public T[] getCollection() {
+//        return (T[]) Arrays.copyOf(collection,size);
+//    }
 
 //    @Override
-    public T get(int index) {
+    public Object get(int index) {
         return collection[index];
     }
 
 //    @Override
-    public int find(T obj) {
+    public int find(Object obj) {
         for (int i = 0; i < size; i++){
             if (collection[i].equals(obj))
                 return i;
@@ -102,7 +100,7 @@ public class MyCollectionGeneric<T>{
     }
 
 //    @Override
-    public int findLast(T obj) {
+    public int findLast(Object obj) {
         for (int i = size - 1; i >= 0; i--){
             if (collection[i].equals(obj))
                 return i;
@@ -111,7 +109,7 @@ public class MyCollectionGeneric<T>{
     }
 
 //    @Override
-//    public boolean equals(T obj) {
+//    public boolean equals(Object obj) {
 //        return false;
 //    }
 

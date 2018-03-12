@@ -11,6 +11,6 @@ public class EmployeeHourlyPay extends Worker implements EmployeeInterface {
 
     @Override
     public double getSalary() {
-        return daysPerMonth * hoursPerDay * super.pay;
+        return daysPerMonth * hoursPerDay * pay;
     }
 }

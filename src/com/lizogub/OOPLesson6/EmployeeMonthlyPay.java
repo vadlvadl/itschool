@@ -8,6 +8,6 @@ public class EmployeeMonthlyPay extends Worker implements EmployeeInterface {
 
     @Override
     public double getSalary() {
-        return super.pay;
+        return pay;
     }
 }
